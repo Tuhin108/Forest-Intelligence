@@ -13,13 +13,12 @@ pinned: false
 
 **See the forest. Trust the count.**
 
-Built for the Flora Carbon AI hiring hackathon ("Build this weekend. Win a paid tech
-internship."). Given high-resolution forest imagery (and optionally a KML boundary),
-this tool detects individual tree crowns, estimates canopy area, and — the actual
+Given high-resolution forest imagery (and optionally a KML boundary),
+This tool detects individual tree crowns, estimates canopy area, and — the actual
 point of the exercise — is explicit about how reliable each result is and what it
 can't tell you.
 
-**Live demo:** _add your deployed URL here before submitting_
+**Live demo:** [Link](https://forest-intelligence.streamlit.app/)
 **2-page explanation:** `docs/explanation.pdf` _(write after the build — see EXECUTION_PLAN.md §21)_
 
 ## What it does
