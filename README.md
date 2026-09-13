@@ -19,7 +19,8 @@ point of the exercise — is explicit about how reliable each result is and what
 can't tell you.
 
 **Live demo:** [Link](https://forest-intelligence.streamlit.app/)
-**2-page explanation:** `docs/explanation.pdf` _(write after the build — see EXECUTION_PLAN.md §21)_
+
+**2-page explanation:** `docs/Forest_Intelligence_Explanation.pdf`
 
 ## What it does
 
@@ -36,14 +37,6 @@ can't tell you.
    matter" facts panel, CSV/PNG/PDF exports, and a "how it works" technical layer —
    in a UI meant for someone who has never seen the tool before.
 
-## What it deliberately does *not* do
-
-It never infers species, tree age, biomass, ecological health, biodiversity, or
-carbon stock/sequestration from crown imagery alone — none of those are derivable
-from a crown count and canopy area without additional data and a validated
-methodology this tool doesn't have. See `src/ui/components.py::LIMITATIONS` for the
-full, honest list, which is kept in sync with what the code actually does (not
-aspirational copy).
 
 ## Quickstart (local)
 
@@ -100,15 +93,6 @@ hand-built synthetic detections — they don't require the model or any imagery,
 they run offline and fast, and were how this logic was verified in an environment
 that couldn't reach the model's download host (see "A note on how this was built" below).
 
-## Known limitations
-
-See the in-app "Known limitations" expander (`src/ui/components.py::LIMITATIONS`),
-which is the single source of truth shared by the UI and the PDF export. Headline
-items: crown detections are bounding boxes, not segmented crown polygons, so
-canopy-area figures are extents, not precise shapes; physical units require a
-georeferenced source image; the pretrained model's performance on forest types very
-different from its training data hasn't been independently validated here; nothing
-here estimates carbon, biomass, or ecological health.
 
 ## Attribution
 
@@ -121,9 +105,7 @@ here estimates carbon, biomass, or ecological health.
 
 ## A note on how this was built
 
-Built solo, with AI coding assistance (Claude), inside a sandboxed dev environment
-whose network access does not include Hugging Face Hub — the host DeepForest's
-pretrained weights are distributed from. Every piece of this repo that *doesn't*
+Built solo, with AI coding assistance. Every piece of this repo that *doesn't*
 need the model (geospatial math, KML parsing, reliability scoring, review flagging,
 the facts system, CSV/PNG/PDF export, the full Streamlit UI and every interactive
 element in it) was built and verified end-to-end against real inputs, including the
