@@ -1,0 +1,128 @@
+{
+  "_meta": {
+    "note": "Hand-curated for the hackathon weekend rather than LLM-generated at runtime -- see EXECUTION_PLAN.md section 14 for why, and for how to swap in a batch LLM-curation pipeline later without changing the app's interface. Every entry below is a well-established, generally verifiable point in forest ecology or remote sensing, deliberately phrased without invented precise statistics.",
+    "generated": "static, hand-written 2026-09"
+  },
+  "facts": [
+    {
+      "id": "crown_shyness",
+      "category": "Wait... What?",
+      "tags": ["general", "canopy_structure"],
+      "hook": "These trees have boundary issues (on purpose).",
+      "body": "In some species, the crowns of neighboring trees grow right up to each other and then stop, leaving thin channel-like gaps that trace each tree's outline from below. It's called crown shyness, and it's been documented since the 1920s without full scientific agreement on why it happens.",
+      "why_it_matters": "It's a reminder that 'the canopy' isn't one continuous blob -- it's made of individual crowns with real edges, which is exactly what a crown-detection model is trying to find.",
+      "source_name": "Wikipedia -- Crown shyness",
+      "source_url": "https://en.wikipedia.org/wiki/Crown_shyness"
+    },
+    {
+      "id": "wood_wide_web",
+      "category": "Nature Is Weird",
+      "tags": ["general"],
+      "hook": "The forest floor has its own internet.",
+      "body": "Many trees connect to shared networks of mycorrhizal fungi threaded through the soil, which can link the root systems of separate, even different-species, trees.",
+      "why_it_matters": "A count of visible crowns from above says nothing about what's connecting them underground -- a reminder that overhead imagery only ever sees part of the story.",
+      "source_name": "USDA Forest Service -- Mycorrhizae",
+      "source_url": "https://www.fs.usda.gov"
+    },
+    {
+      "id": "canopy_cover_definition",
+      "category": "Look Closer",
+      "tags": ["general", "coverage_high", "coverage_low"],
+      "hook": "What 'canopy coverage' actually means.",
+      "body": "In forestry, canopy cover is simply the proportion of ground that would be shaded if you looked straight down through the treetops -- it says nothing on its own about tree health, age, or species.",
+      "why_it_matters": "That's exactly what the coverage percentage in this tool measures: an overhead extent, not a health score.",
+      "source_name": "USDA Forest Service -- Forest Inventory & Analysis glossary",
+      "source_url": "https://www.fs.usda.gov"
+    },
+    {
+      "id": "canopy_layers_habitat",
+      "category": "Who Lives Here?",
+      "tags": ["coverage_high"],
+      "hook": "Same forest, different neighborhoods.",
+      "body": "Forest canopies are commonly described in layers -- emergent, canopy, understory, forest floor -- and different animal and plant communities tend to specialize in each layer rather than using the whole vertical space equally.",
+      "why_it_matters": "A single overhead photo only shows the top layer. It can't tell you what's living underneath it.",
+      "source_name": "NASA Earth Observatory -- Forests",
+      "source_url": "https://earthobservatory.nasa.gov"
+    },
+    {
+      "id": "disturbance_recovery",
+      "category": "Nature Doesn't Have Ctrl+Z",
+      "tags": ["scenario", "canopy_loss"],
+      "hook": "Canopy doesn't grow back on your schedule.",
+      "body": "Once mature canopy is removed, regrowing an equivalent crown structure typically takes years to decades, not seasons -- the exact timeline depends heavily on species, climate, and soil.",
+      "why_it_matters": "That's why the scenario slider in this tool only ever shows a geometric 'what would X% less canopy look like' -- it deliberately does not claim to predict how fast (or whether) that canopy would return.",
+      "source_name": "USDA Forest Service -- Forest disturbance & recovery",
+      "source_url": "https://www.fs.usda.gov"
+    },
+    {
+      "id": "overlap_hard_for_ai",
+      "category": "AI Gets Confused Too",
+      "tags": ["overlap_high"],
+      "hook": "Where one crown ends and the next begins is a genuinely hard question.",
+      "body": "When neighboring tree crowns touch or overlap in an overhead photo, even careful human annotators often disagree on exactly where to draw the boundary between them -- it's a known, long-standing challenge in remote sensing of forests, not a quirk of any one model.",
+      "why_it_matters": "That's exactly why this tool flags dense-overlap regions separately instead of quietly treating every detection as equally certain.",
+      "source_name": "Weinstein et al., DeepForest (Methods in Ecology and Evolution, 2020)",
+      "source_url": "https://doi.org/10.1101/2020.07.07.191551"
+    },
+    {
+      "id": "shadows_hide_crowns",
+      "category": "AI Gets Confused Too",
+      "tags": ["shadow_high"],
+      "hook": "The sun has entered the chat.",
+      "body": "Shadows -- from clouds, terrain, or the trees themselves -- can hide part of a crown's edge in an RGB photo, or make one tree's shadow look like it belongs to its neighbor.",
+      "why_it_matters": "Detections in the darker parts of an image are inherently less certain, which is why this tool flags shadow-affected regions rather than reporting every number with equal confidence.",
+      "source_name": "NASA Earth Observatory -- reading remote sensing imagery",
+      "source_url": "https://earthobservatory.nasa.gov"
+    },
+    {
+      "id": "count_vs_canopy_myth",
+      "category": "Forest Myth vs Reality",
+      "tags": ["general"],
+      "hook": "More trees doesn't automatically mean more forest.",
+      "body": "A patch with many small young trees can cover less total canopy area than a patch with far fewer, older, wide-crowned trees.",
+      "why_it_matters": "It's exactly why this tool always reports tree count and canopy area as two separate numbers instead of collapsing them into one score.",
+      "source_name": "FAO -- Global Forest Resources Assessment (concepts & definitions)",
+      "source_url": "https://www.fao.org"
+    },
+    {
+      "id": "satellite_perspective_limits",
+      "category": "Satellite Perspective",
+      "tags": ["general", "uncertainty_high"],
+      "hook": "Overhead imagery is a great view of a small part of the story.",
+      "body": "A top-down RGB photo can show crown shape, extent, and rough canopy structure, but on its own it can't reveal tree species, trunk diameter, age, root health, or what's growing beneath the canopy.",
+      "why_it_matters": "It's exactly why this tool doesn't try to guess species, age, or ecological health from crown imagery alone -- that would need different data entirely.",
+      "source_name": "NASA Earth Observatory -- remote sensing basics",
+      "source_url": "https://earthobservatory.nasa.gov"
+    },
+    {
+      "id": "canopy_rainfall_interception",
+      "category": "This Actually Matters",
+      "tags": ["coverage_high"],
+      "hook": "Trees are basically giant, leaky umbrellas.",
+      "body": "Forest canopy intercepts some rainfall before it reaches the ground -- some evaporates straight off the leaves, and the rest is slowed and redirected down trunks and branches instead of falling straight down.",
+      "why_it_matters": "It's one of the reasons canopy coverage is a genuinely meaningful number for a landscape, beyond just 'how many trees are there.'",
+      "source_name": "USDA Forest Service -- forest hydrology",
+      "source_url": "https://www.fs.usda.gov"
+    },
+    {
+      "id": "crown_size_variation",
+      "category": "Nature Is Weird",
+      "tags": ["general"],
+      "hook": "There's no such thing as a 'normal' tree crown.",
+      "body": "Crown size and shape vary enormously with species, age, light competition, and local growing conditions -- two trees of the same species can have very differently sized crowns depending on how much room and light they had to grow into.",
+      "why_it_matters": "It's why this tool shows a size *distribution* (small/medium/large) instead of a single 'average tree' number that would hide all of that variation.",
+      "source_name": "USDA Forest Service -- Silvics of North America",
+      "source_url": "https://www.fs.usda.gov"
+    },
+    {
+      "id": "no_carbon_from_crowns_alone",
+      "category": "This Actually Matters",
+      "tags": ["general", "scenario"],
+      "hook": "Counting trees isn't the same as counting carbon.",
+      "body": "Estimating carbon stock or sequestration reliably generally requires species identification, tree height or trunk diameter, and validated allometric equations -- information that a crown count and canopy-area estimate, on their own, don't provide.",
+      "why_it_matters": "That's exactly why this tool never converts tree count or canopy area into a carbon or CO2 figure -- doing so without that additional data would be inventing a number, not measuring one.",
+      "source_name": "FAO -- Global Forest Resources Assessment (carbon methodology overview)",
+      "source_url": "https://www.fao.org"
+    }
+  ]
+}

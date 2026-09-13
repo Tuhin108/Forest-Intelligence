@@ -1,0 +1,36 @@
+# Core app
+streamlit>=1.50
+
+# Detection
+deepforest>=2.0        # API changed at 2.0 (Hugging Face Hub-based weight loading) -- pin >=2.0
+torch>=2.2              # see note below on CPU-only installs for free-tier hosting
+
+# Geospatial
+rasterio>=1.3
+shapely>=2.0
+pyproj>=3.6
+
+# Data / imaging
+numpy>=1.26
+pandas>=2.2
+Pillow>=10.0
+
+# Reporting
+fpdf2>=2.7
+
+# --------------------------------------------------------------------------
+# Deployment note (Hugging Face Spaces, free CPU-basic tier):
+#
+# A plain `pip install torch` resolves to a CUDA-enabled build and drags in
+# several GB of NVIDIA libraries that a CPU-only Space never uses, which
+# slows the build and can exhaust the free tier's disk/build-time budget.
+# Install the CPU-only build explicitly instead, *before* installing this
+# file, e.g. in your Space's Dockerfile or build step:
+#
+#   pip install torch --index-url https://download.pytorch.org/whl/cpu
+#   pip install -r requirements.txt
+#
+# On first run, DeepForest downloads its pretrained weights (~130 MB) from
+# Hugging Face Hub (weecology/deepforest-tree) and caches them -- this
+# requires the host to have outbound internet access to huggingface.co.
+# --------------------------------------------------------------------------
